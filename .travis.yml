@@ -1,0 +1,10 @@
+language: java
+jdk:
+- oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: XcdC4o4ODsmPKBhi+wJHeUvglAZnFifYV9zxo7E8cy0sNgSUGeK7qqI4//F1EqqY8VFg11uYvoaEHbfUk/AxhCU9m5OlOiVf/IBopotKEFGlhS3mwlgI4mTtzTITwWjtLWSE//II+awDnhG4hquX/QWjivsYTMOk/35CkGFLHxtSHV/hu4NOhDy0eWNfQMTa7c/3UwZizvditFdpt8dvHRTUGSQcubCvPRaJcHnVlLV1FFEZpQIzZ7e2jltrf+m8X6GvEuDwzDsVyQ7q4rogSkALMSEkhfHMt42ui1WbDOFsn5S2imLqJ3gl9RYLrZbCaMqol4FKYmEypUwfAq4Y+gZO3ojDX5WuZPX3wQd7depL40Kyfdww74sS+f3pD2O9m3096b2G1e7/o8Qvj209zmavzk9V5wHTC13iDDVYXEG1HbX7p/iHvhMhpUGoHqqyLBG3LEsb+xmL2SC1jdDqXq9S8eJUCsC1HRnFHjxDD4DPcD/Jo3mS+dRpsT9camwthmvbwmYYjmr4xcFrTVumCmdJEhKP2a9GBUGgZGAK1ciguDrwIEBKfbOgxWvKJIfN5sG4wFUxETENZNe/3H0gHnMstnR0n8I0KQgEJ8EPxE9tsNtycdAJJPYBP1Ia/ZI0OeIEFPIdymEMGL0icWQDdgzZLdtyjECdDzqnwDUmQdE=
+  app: spring-bookstore
+  on:
+    repo: nadeva/spring-bookstore
