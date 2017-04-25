@@ -1,0 +1,1 @@
+web: java -jar -Dserver.port=$PORT target/spring-bookstore-1.0.0-SNAPSHOT-exec.jar

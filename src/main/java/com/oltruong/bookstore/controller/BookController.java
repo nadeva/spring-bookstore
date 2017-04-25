@@ -3,7 +3,7 @@ package com.oltruong.bookstore.controller;
 import com.oltruong.bookstore.exception.ResourceNotFoundException;
 import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.repository.BookRepository;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookController {
 
-    //TODO COMPLETE
+    @Autowired
     private BookRepository bookRepository;
 
     @RequestMapping(value = "/rest/books", method = RequestMethod.GET)
     Iterable<Book> findAll() {
-
-        //TODO COMPLETE
-        return null;
+        return bookRepository.findAll();
     }
 
     @RequestMapping(value = "/rest/books", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     void createOperation(@RequestBody Book book) {
+
+        System.out.println("SAVINGG" + book.getName());
         bookRepository.save(book);
     }
 
@@ -46,8 +46,11 @@ public class BookController {
     @RequestMapping(value = "/rest/books/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     Book get(@PathVariable Long id) {
-        //TODO COMPLETE
-        throw new ResourceNotFoundException();
+        Book book = bookRepository.findOne(id);
+        if (book == null) {
+            throw new ResourceNotFoundException();
+        }
+        return book;
     }
 
     @RequestMapping(value = "/rest/books/{id}", method = RequestMethod.PUT)
