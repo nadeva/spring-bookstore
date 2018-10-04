@@ -13,6 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Date;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -45,6 +46,7 @@ public class OrderServiceTest {
         Order order = DataBuilder.buildOrder(book);
         assertThat(order.getCreationDate()).as("Order ID").isNull();
         when(mockBookRepository.findByName(isA(String.class))).thenReturn(order.getOrderLines().get(0).getBook());
+        when(mockBookRepository.findById(isA(Long.class))).thenReturn(Optional.empty());
 
         OrderService orderService = new OrderService();
 
@@ -57,7 +59,7 @@ public class OrderServiceTest {
         orderService.save(order);
 
         //THEN
-        verify(mockBookRepository).findOne(eq(bookId));
+        verify(mockBookRepository).findById(eq(bookId));
         verify(mockOrderLineRepository).save(eq(order.getOrderLines().get(0)));
         verify(mockOrderRepository).save(eq(order));
 

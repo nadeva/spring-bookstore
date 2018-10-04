@@ -1,11 +1,11 @@
 package com.oltruong.bookstore.service;
 
-import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.model.Order;
 import com.oltruong.bookstore.model.OrderLine;
 import com.oltruong.bookstore.repository.BookRepository;
 import com.oltruong.bookstore.repository.OrderLineRepository;
 import com.oltruong.bookstore.repository.OrderRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +26,9 @@ public class OrderService {
     public void save(Order order) {
         order.setCreationDate(new Date());
         for (OrderLine orderLine : order.getOrderLines()) {
-            Book book = bookRepository.findOne(orderLine.getBook().getId());
-            orderLine.setBook(book);
+            bookRepository.findById(orderLine.getBook().getId())
+                          .ifPresent(orderLine::setBook);
+
             orderLineRepository.save(orderLine);
         }
         orderRepository.save(order);

@@ -3,6 +3,7 @@ package com.oltruong.bookstore.controller;
 import com.oltruong.bookstore.exception.ResourceNotFoundException;
 import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.repository.BookRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,40 +27,30 @@ public class BookController {
     @RequestMapping(value = "/rest/books", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     void createOperation(@RequestBody Book book) {
-
-        System.out.println("SAVINGG" + book.getName());
         bookRepository.save(book);
     }
 
     @RequestMapping(value = "/rest/books/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     void delete(@PathVariable Long id) {
+        Book book = findBookOrThrowException(id);
+        bookRepository.delete(book);
+    }
 
-        Book book = bookRepository.findOne(id);
-        if (book != null) {
-            bookRepository.delete(book);
-        } else {
-            throw new ResourceNotFoundException();
-        }
+    private Book findBookOrThrowException(@PathVariable Long id) {
+        return bookRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     @RequestMapping(value = "/rest/books/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     Book get(@PathVariable Long id) {
-        Book book = bookRepository.findOne(id);
-        if (book == null) {
-            throw new ResourceNotFoundException();
-        }
-        return book;
+        return findBookOrThrowException(id);
     }
 
     @RequestMapping(value = "/rest/books/{id}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     void editBook(@RequestBody Book book, @PathVariable Long id) {
-
-        if (bookRepository.findOne(id) == null) {
-            throw new ResourceNotFoundException();
-        }
+        findBookOrThrowException(id);
         book.setId(id);
         bookRepository.save(book);
 

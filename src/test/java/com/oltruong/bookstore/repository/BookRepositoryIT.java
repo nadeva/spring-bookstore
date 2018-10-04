@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MyContext.class})
@@ -21,18 +22,17 @@ public class BookRepositoryIT {
 
     @Test
     public void createBook() {
-
         Book book = DataBuilder.buildBook();
         assertThat(book.getId()).as("Book ID").isNull();
 
         bookRepository.save(book);
         assertThat(book.getId()).as("Book ID").isNotNull();
 
-        Book bookFromDatabase = bookRepository.findOne(book.getId());
+        Book bookFromDatabase = bookRepository.findById(book.getId()).orElseThrow(AssertionError::new);
         assertThat(bookFromDatabase).as("Book from Database").isEqualTo(book);
 
         bookRepository.delete(bookFromDatabase);
-        assertThat(bookRepository.findOne(book.getId())).isNull();
+        assertThat(bookRepository.findById(book.getId())).isEmpty();
 
 
     }

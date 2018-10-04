@@ -1,9 +1,10 @@
 package com.oltruong.bookstore.controller;
 
 import com.oltruong.bookstore.exception.ResourceNotFoundException;
-import com.oltruong.bookstore.service.OrderService;
 import com.oltruong.bookstore.model.Order;
 import com.oltruong.bookstore.repository.OrderRepository;
+import com.oltruong.bookstore.service.OrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,31 +38,26 @@ public class OrderController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     void delete(@PathVariable Long id) {
 
-        Order order = orderRepository.findOne(id);
-        if (order != null) {
-            orderRepository.delete(order);
-        } else {
-            throw new ResourceNotFoundException();
-        }
+        Order order = findOrderOrThrowException(id);
+        orderRepository.delete(order);
     }
+
+    private Order findOrderOrThrowException(@PathVariable Long id) {
+        return orderRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
 
     @RequestMapping(value = "/rest/orders/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     Order get(@PathVariable Long id) {
-        Order order = orderRepository.findOne(id);
-        if (order == null) {
-            throw new ResourceNotFoundException();
-        }
-        return order;
+        return findOrderOrThrowException(id);
     }
 
     @RequestMapping(value = "/rest/orders/{id}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     void editOrder(@RequestBody Order order, @PathVariable Long id) {
 
-        if (orderRepository.findOne(id) == null) {
-            throw new ResourceNotFoundException();
-        }
+        findOrderOrThrowException(id);
         order.setId(id);
         orderRepository.save(order);
 
