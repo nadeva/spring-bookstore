@@ -20,9 +20,10 @@
     <description>Simple bookstore using Spring, to serve as demo purposes</description>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <h2.version>1.4.191</h2.version>
         <derby.version>10.12.1.1</derby.version>
         <junit.version>4.12</junit.version>
