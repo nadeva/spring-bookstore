@@ -14,14 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.AttributeOverride;
+
 @RestController
 public class OrderController {
 
-    @Autowired
     private OrderService orderService;
 
-    @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    public OrderController(OrderService orderService, OrderRepository orderRepository) {
+        this.orderService = orderService;
+        this.orderRepository = orderRepository;
+    }
 
     @RequestMapping(value = "/rest/orders", method = RequestMethod.GET)
     Iterable<Order> findAll() {

@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookController {
 
-    @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @RequestMapping(value = "/rest/books", method = RequestMethod.GET)
     Iterable<Book> findAll() {
