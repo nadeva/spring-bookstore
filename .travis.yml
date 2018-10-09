@@ -8,3 +8,7 @@ deploy:
   app: spring-bookstore
   on:
     repo: nadeva/spring-bookstore
+
+cache:
+  directories:
+  - $HOME/.m2
