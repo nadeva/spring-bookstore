@@ -20,7 +20,7 @@
     <description>Simple bookstore using Spring, to serve as demo purposes</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -166,6 +166,16 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.google.cloud.tools</groupId>-->
+                <!--<artifactId>jib-maven-plugin</artifactId>-->
+                <!--<version>1.0.0</version>-->
+                <!--<configuration>-->
+                    <!--<to>-->
+                        <!--<image>registry.hub.docker.com/oltruong/test-jib</image>-->
+                    <!--</to>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
