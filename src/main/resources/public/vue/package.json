@@ -1,7 +1,0 @@
-{
-  "private": true,
-  "dependencies": {
-    "vue": "^2.6.10",
-    "vue-axios": "^2.1.4"
-  }
-}
