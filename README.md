@@ -3,4 +3,4 @@
 Simple SpringBoot app of a bookstore, using Spring data.
 
 ## Build status
-[![Build Status](https://travis-ci.org/nadeva/spring-bookstore.svg?branch=master)](https://travis-ci.org/nadeva/spring-bookstore)
+[![Build Status](https://github.com/nadeva/spring-bookstore/actions/workflows/build.yml/badge.svg)](https://github.com/nadeva/spring-bookstore/actions/workflows/build.yml/badge.svg)
