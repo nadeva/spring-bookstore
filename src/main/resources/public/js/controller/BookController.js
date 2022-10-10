@@ -47,7 +47,7 @@ bookstoreApp.controller('BookController', ['$scope', '$http', '$routeParams', '$
                     $scope.editing = false;
                 });
             } else {
-                $http.post('../rest/books/', $scope.book).success(function (data) {
+                $http.post('../rest/books', $scope.book).success(function (data) {
                     $location.path('books');
                 });
             }

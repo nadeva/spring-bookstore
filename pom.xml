@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
+        <version>3.0.0-M5</version>
     </parent>
 
     <groupId>com.oltruong</groupId>
@@ -20,12 +20,12 @@
     <description>Simple bookstore using Spring, to serve as demo purposes</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <h2.version>1.4.191</h2.version>
-        <derby.version>10.12.1.1</derby.version>
+        <h2.version>2.1.214</h2.version>
+        <derby.version>10.16.1.1</derby.version>
         <junit.version>4.13.1</junit.version>
         <mockito-core.version>1.10.19</mockito-core.version>
         <assertj-core.version>3.13.2</assertj-core.version>
@@ -36,6 +36,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!--to use jetty-->
@@ -49,10 +53,10 @@
         <!--</exclusion>-->
         <!--</exclusions>-->
         <!--</dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-jetty</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-jetty</artifactId>-->
+        <!--        </dependency>-->
 
 
         <dependency>
@@ -103,14 +107,14 @@
     </dependencies>
 
     <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
+        <!--        <repository>-->
+        <!--            <snapshots>-->
+        <!--                <enabled>false</enabled>-->
+        <!--            </snapshots>-->
+        <!--            <id>central</id>-->
+        <!--            <name>Central Repository</name>-->
+        <!--&lt;!&ndash;            <url>https://jcenter.bintray.com/</url>&ndash;&gt;-->
+        <!--        </repository>-->
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
@@ -182,16 +186,16 @@
                     </dependency>
                 </dependencies>
             </plugin>
-<!--            <plugin>-->
-<!--            <groupId>com.google.cloud.tools</groupId>-->
-<!--            <artifactId>jib-maven-plugin</artifactId>-->
-<!--            <version>1.4.0</version>-->
-<!--            <configuration>-->
-<!--            <to>-->
-<!--            <image>registry.hub.docker.com/oltruong/test-jib-test1613</image>-->
-<!--            </to>-->
-<!--            </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--            <groupId>com.google.cloud.tools</groupId>-->
+            <!--            <artifactId>jib-maven-plugin</artifactId>-->
+            <!--            <version>1.4.0</version>-->
+            <!--            <configuration>-->
+            <!--            <to>-->
+            <!--            <image>registry.hub.docker.com/oltruong/test-jib-test1613</image>-->
+            <!--            </to>-->
+            <!--            </configuration>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
