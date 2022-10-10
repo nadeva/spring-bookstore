@@ -24,36 +24,24 @@ public class Application {
         return (args) -> {
             // save a few customers
             Book firstBook = new Book();
-            firstBook.setName("I ❤️ Spring");
+            firstBook.setName("I ❤️Spring");
             firstBook.setAuthor("Bob");
-            firstBook.setPrice(42f);
+            firstBook.setDescription("A great book to fall in love with Spring");
+            firstBook.setPrice(45f);
             repository.save(firstBook);
 
-            // fetch all customers
-            log.info("Customers found with findAll():");
-            log.info("-------------------------------");
-            for (Book book : repository.findAll()) {
-                log.info(book.toString());
-            }
-            log.info("");
+            Book secondBook = new Book();
+            secondBook.setName("Pro Spring 6: An In-Depth Guide");
+            secondBook.setAuthor("Iuliana Cosmina");
+            secondBook.setDescription("Master the Spring Framework.");
+            secondBook.setPrice(54.12f);
+            secondBook.setPictureURL("https://m.media-amazon.com/images/I/41t+YkLzIrL._AC_SY780_.jpg");
+            repository.save(secondBook);
 
-//            // fetch an individual customer by ID
-//            Customer customer = repository.findById(1L);
-//            log.info("Customer found with findById(1L):");
-//            log.info("--------------------------------");
-//            log.info(customer.toString());
-//            log.info("");
-//
-//            // fetch customers by last name
-//            log.info("Customer found with findByLastName('Bauer'):");
-//            log.info("--------------------------------------------");
-//            repository.findByLastName("Bauer").forEach(bauer -> {
-//                log.info(bauer.toString());
-//            });
-//            // for (Customer bauer : repository.findByLastName("Bauer")) {
-//            //  log.info(bauer.toString());
-//            // }
-//            log.info("");
+            // fetch all customers
+            log.info("Books found with findAll():");
+            log.info("-------------------------------");
+            repository.findAll().forEach(book -> log.info(book.toString()));
         };
     }
 }
