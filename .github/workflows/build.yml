@@ -28,6 +28,7 @@ jobs:
       - uses: 47ng/actions-clever-cloud@v1.3.1
         with:
           appID: app_d3ae9b41-163c-4849-9898-175cd5f7ddc3
+          force: true
         env:
          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
