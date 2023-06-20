@@ -22,9 +22,10 @@ jobs:
         env:
           CI: true
 
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
+
+      - uses: 47ng/actions-clever-cloud@v1.3.1
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: 'spring-bookstore'
-          heroku_email: ${{ secrets.EMAIL }}
+          appID: app_d3ae9b41-163c-4849-9898-175cd5f7ddc3
+        env:
+         CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+         CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
